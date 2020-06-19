@@ -76,13 +76,13 @@
                 title="多选"
                 @click="handleMuiltSelect"
         ></i>
-        <!--<i-->
-                <!--data-command="addGroup"-->
-                <!--class="command iconfont icon-group"-->
-                <!--title="成组"-->
-                <!--:class="addGroup?'':'disable'"-->
-                <!--@click="handleAddGroup"-->
-        <!--&gt;</i>-->
+        <i
+                data-command="addGroup"
+                class="command iconfont icon-group"
+                title="成组"
+                :class="addGroup?'':'disable'"
+                @click="handleAddGroup"
+        ></i>
         <i data-command="unGroup" class="command iconfont icon-ungroup disable" title="解组"></i>
         <el-button @click="consoleData" type="primary">控制台输出数据</el-button>
     </div>
@@ -233,25 +233,6 @@
                 this.graph.setMode("mulitSelect");
             },
             handleAddGroup() {
-                //TODO 这部分等阿里更新Group之后添加
-                // let nodes = this.selectedItem.map(item => item._cfg.model.id)
-                // this.graph.addItem('group', {
-                //   groupId: "group" + uniqueId(),
-                //   nodes,
-                //   type: 'rect',
-                //   title: ''
-                // });
-                // const model = {
-                //   id: "group" + uniqueId(),
-                //   title: "新建分组"
-                // };
-                // // this.command.executeCommand("add", "group", model);
-                // this.selectedItem.forEach(item => {
-                //   console.log(item);
-                // });
-
-                // this.getPosition(this.selectedItem);
-
                 //combo
                 // 先删除原有的combo
                 const combos = this.graph.getCombos();
@@ -262,18 +243,13 @@
                 let combo = this.graph.createCombo({
                     id: "group" + uniqueId(),
                     ...global.defalutCombo,
-                    label: '预热'
+                    label: '这是一个组'
                 }, nodes);
                 const selected = this.graph.findAllByState('node', 'selected');
                 selected.forEach(node => {
                     this.graph.setItemState(node, 'selected', false);
                 });
                 this.selectedItem = null;
-                // nodes.forEach(id => {
-                //   const item = this.graph.findById(id);
-                //   item.toFront();
-                // });
-                // this.graph.paint();
             },
             getPosition(items) {
                 const boxList = [];

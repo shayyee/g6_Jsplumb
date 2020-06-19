@@ -1,9 +1,9 @@
 <template>
     <div class="page" ref="page">
         <div ref="graph" :id="pageId" class="graph-container" style="position: relative;"></div>
-        <div ref="prepare" class="prepare">
-            <div ref="line" class="line"></div>
-        </div>
+        <!--<div ref="prepare" class="prepare">-->
+            <!--<div ref="line" class="line"></div>-->
+        <!--</div>-->
     </div>
 </template>
 
@@ -142,13 +142,13 @@
                     const {item} = ev;
                     let position = this.graph.getClientByPoint(item._cfg.model.x, item._cfg.model.y);
                     console.log(position);
-                    // const combos = this.graph.getCombos();
-                    // if(combos.length > 0) {
-                    //     const combo_id = combos[0]._cfg.id;
-                    //     const combo = this.graph.findById(combo_id);
-                    //     combo.addNode(item);
-                    //     graph.updateComboTree(item, combo_id)
-                    // }
+                    const combos = this.graph.getCombos();
+                    if(combos.length > 0) {
+                        const combo_id = combos[0]._cfg.id;
+                        const combo = this.graph.findById(combo_id);
+                        combo.addNode(item);
+                        graph.updateComboTree(item, combo_id)
+                    }
                 });
                 graph.on("node:dragend", () => {
                     const timer = setTimeout(() => {
